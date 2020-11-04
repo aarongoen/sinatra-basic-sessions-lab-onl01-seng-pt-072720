@@ -12,12 +12,10 @@ class App < Sinatra::Base
     end
 
     post '/checkout' do
-        @sessions = session
-        item = params[:item]
-        @sessions[:item] = item
-
-        @Items = Item.all
-
+        # binding.pry
+        @session = session.merge!(params)
+        @item = session["item"]
+        @items = Item.all
         erb :'/checkout'
         end
 end
